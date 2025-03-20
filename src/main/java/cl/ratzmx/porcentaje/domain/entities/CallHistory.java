@@ -17,5 +17,6 @@ public class CallHistory {
   private String endpoint;
   private String parameters;
   private String response;
+  private Integer statusCode;
 
 }

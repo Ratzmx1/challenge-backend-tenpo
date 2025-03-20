@@ -1,11 +1,30 @@
 package cl.ratzmx.porcentaje.service;
 
+import cl.ratzmx.porcentaje.client.PercentageClient;
 import cl.ratzmx.porcentaje.domain.dto.PercentageResponse;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
-@FeignClient(name = "percentageClient", url = "${percentage.baseUrl}")
-public interface PercentageService {
-  @GetMapping(value = "/percentage")
-  PercentageResponse getPercentage();
+@Service
+@AllArgsConstructor
+@Slf4j
+public class PercentageService {
+
+  private PercentageClient percentageClient;
+
+  private PercentageCacheService percentageCacheService;
+
+  public PercentageResponse getPercentage(){
+    try {
+      var percentageResponse = percentageClient.getPercentage();
+      percentageCacheService.saveCache(percentageResponse);
+
+      return percentageResponse;
+    } catch (Exception e) {
+      log.info("Using cache value");
+      return percentageCacheService.getCache();
+    }
+  }
 }

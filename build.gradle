@@ -27,7 +27,10 @@ dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.2'
 
 	compileOnly 'org.projectlombok:lombok'
@@ -39,6 +42,8 @@ dependencies {
 	}
 	implementation 'org.bouncycastle:bcprov-jdk18on:1.80'
 	implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
+	implementation 'com.github.ben-manes.caffeine:caffeine'
+
 }
 
 tasks.named('test') {

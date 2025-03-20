@@ -1,10 +1,17 @@
 spring:
   application:
     name: percentage
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 logging:
   level:
     root: INFO
+    org:
+      mockserver:
+        log:
+          MockServerEventLog: ERROR
 
 percentage:
   baseUrl: http://localhost:8081
