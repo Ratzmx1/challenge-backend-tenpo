@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: percentage
+
+logging:
+  level:
+    root: INFO
+
+percentage:
+  baseUrl: http://localhost:8081

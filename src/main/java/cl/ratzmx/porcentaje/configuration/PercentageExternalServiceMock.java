@@ -1,4 +1,4 @@
-package cl.ratzmx.porcentaje.mock;
+package cl.ratzmx.porcentaje.configuration;
 
 import org.mockserver.integration.ClientAndServer;
 import org.springframework.context.annotation.Bean;
