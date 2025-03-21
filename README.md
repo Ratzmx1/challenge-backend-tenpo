@@ -32,6 +32,10 @@ Ejecuta el siguiente comando para levantar la API y la base de datos PostgreSQL 
    docker-compose up --build
    ```
 
+**Nota:** Al desplegar con docker, la aplicación lanza una excepción provocada por la librería externa 
+utilizada para realizar el mock (mockserver). Esta no afecta en la funcionalidad y solo tiene relación con el logger de esta
+el cual no puede cargar el output para consola en este contexto.
+
 3. **Validar ejecución de la api:**
 
 Una vez finalizado el comando anterior, la api debera estar levantada y disponible en la url 
