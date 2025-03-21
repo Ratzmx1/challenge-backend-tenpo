@@ -4,6 +4,7 @@ import cl.ratzmx.porcentaje.domain.dto.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -14,6 +15,14 @@ public class GlobalExceptionHandler {
         errorResponse.setError(ex.getMessage().replaceAll("[\\n\\r\\t]", " ").trim());
 
         return ResponseEntity.status(ex.getStatus()).body(errorResponse);
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<ErrorResponse> handleException(NoHandlerFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setError("Endpoint not found");
+
+        return ResponseEntity.status(404).body(errorResponse);
     }
 
     @ExceptionHandler(Exception.class)

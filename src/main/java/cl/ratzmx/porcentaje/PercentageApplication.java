@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
 @EnableFeignClients
+@EnableWebMvc
 public class PercentageApplication {
 
 	public static void main(String[] args) {
