@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class PercentageResponse {
-  private Integer percentage;
+  private Double percentage;
 }
