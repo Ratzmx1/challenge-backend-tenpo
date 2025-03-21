@@ -21,19 +21,22 @@ public class LogRequestFilter implements Filter {
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
     if (servletRequest instanceof HttpServletRequest request && servletResponse instanceof HttpServletResponse response) {
-      HttpRequestWrapper requestWrapper = new HttpRequestWrapper(request);
-      HttpResponseWrapper responseWrapper = new HttpResponseWrapper(response);
+      if (request.getRequestURI().startsWith("/swagger-ui") || request.getRequestURI().startsWith("/v3/api-docs") || request.getRequestURI().startsWith("/favicon.ico")) {
+        filterChain.doFilter(servletRequest, servletResponse);
+      } else {
+        HttpRequestWrapper requestWrapper = new HttpRequestWrapper(request);
+        HttpResponseWrapper responseWrapper = new HttpResponseWrapper(response);
 
-      var requestContent = getContent(requestWrapper);
+        var requestContent = getContent(requestWrapper);
 
-      try {
-        filterChain.doFilter(requestWrapper, responseWrapper);
+        try {
+          filterChain.doFilter(requestWrapper, responseWrapper);
 
-      } finally {
-        saveHistory(request, responseWrapper, requestContent);
+        } finally {
+          saveHistory(request, responseWrapper, requestContent);
 
+        }
       }
-
     } else {
       filterChain.doFilter(servletRequest, servletResponse);
     }

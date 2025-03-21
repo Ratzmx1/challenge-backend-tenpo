@@ -7,7 +7,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
   datasource:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
@@ -20,6 +19,13 @@ logging:
       mockserver:
         log:
           MockServerEventLog: ERROR
+
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+
 
 percentage:
   baseUrl: http://localhost:8081
