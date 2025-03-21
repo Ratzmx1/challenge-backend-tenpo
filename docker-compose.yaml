@@ -17,7 +17,7 @@ services:
     build: .
     container_name: percentage-app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/percentageHistory
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/percentageHistory
       SPRING_DATASOURCE_USERNAME: percentageUser
       SPRING_DATASOURCE_PASSWORD: shhhh...aReallySecretPassword#13
     ports:
