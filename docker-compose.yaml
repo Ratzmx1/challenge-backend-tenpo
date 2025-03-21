@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: percentageUser
+      POSTGRES_PASSWORD: shhhh...aReallySecretPassword#13
+      POSTGRES_DB: percentageHistory
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  spring-app:
+    build: .
+    container_name: percentage-app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/percentageHistory
+      SPRING_DATASOURCE_USERNAME: percentageUser
+      SPRING_DATASOURCE_PASSWORD: shhhh...aReallySecretPassword#13
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
